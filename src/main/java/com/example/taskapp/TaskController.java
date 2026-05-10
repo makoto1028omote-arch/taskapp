@@ -4,31 +4,41 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class TaskController {
 
-    private List<Task> tasks = new ArrayList<>();
+    private final TaskRepository taskRepository;
+
+    public TaskController(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     @GetMapping("/")
     public String list(Model model) {
-        model.addAttribute("tasks", tasks);
+        model.addAttribute("tasks", taskRepository.findAll());
         return "tasks";
     }
 
     @PostMapping("/add")
     public String add(@RequestParam String title) {
         if (!title.isBlank()) {
-            tasks.add(new Task(title));
+            taskRepository.save(new Task(title));
         }
         return "redirect:/";
     }
 
+    @PostMapping("/toggle/{id}")
+    public String toggle(@PathVariable Long id) {
+        taskRepository.findById(id).ifPresent(task -> {
+            task.setDone(!task.isDone());
+            taskRepository.save(task);
+        });
+        return "redirect:/";
+    }
+
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
-        tasks.removeIf(t -> t.getId() == id);
+    public String delete(@PathVariable Long id) {
+        taskRepository.deleteById(id);
         return "redirect:/";
     }
 }

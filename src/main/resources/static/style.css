@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fdf6f0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #555;
+    padding: 40px 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #e8a598;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 追加フォーム */
+.add-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.add-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #f5c6bc;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    background: #fff;
+    color: #555;
+}
+
+.add-form input:focus {
+    border-color: #e8a598;
+}
+
+.add-form button {
+    padding: 12px 24px;
+    background-color: #e8a598;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.add-form button:hover {
+    background-color: #dfa090;
+}
+
+/* タスクリスト */
+ul {
+    list-style: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    padding: 14px 18px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* 完了ボタン */
+.btn-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #b5d8b0;
+    background: white;
+    color: #7cba74;
+    font-size: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btn-toggle:hover {
+    background-color: #e8f5e6;
+}
+
+/* タスク名 */
+.task-title {
+    flex: 1;
+    font-size: 1rem;
+}
+
+.task-title.done {
+    text-decoration: line-through;
+    color: #bbb;
+}
+
+/* 削除ボタン */
+.btn-delete {
+    padding: 6px 14px;
+    background-color: #f5c6bc;
+    color: #c0705e;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #f0b0a4;
+}
+
+/* 空メッセージ */
+.empty {
+    text-align: center;
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-top: 20px;
+}

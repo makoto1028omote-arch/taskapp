@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>タスク管理</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-    <h1>タスク一覧</h1>
+    <div class="container">
+        <h1>タスク管理</h1>
 
-    <form action="/add" method="post">
-        <input type="text" name="title" placeholder="タスクを入力" required>
-        <button type="submit">追加</button>
-    </form>
+        <form action="/add" method="post" class="add-form">
+            <input type="text" name="title" placeholder="タスクを入力してください" required>
+            <button type="submit">追加</button>
+        </form>
 
-    <ul>
-        <li th:each="task : ${tasks}">
-            <span th:text="${task.title}"></span>
-            <form th:action="@{/delete/{id}(id=${task.id})}" method="post" style="display:inline">
-                <button type="submit">削除</button>
-            </form>
-        </li>
-    </ul>
+        <ul>
+            <li th:each="task : ${tasks}">
+                <form th:action="@{/toggle/{id}(id=${task.id})}" method="post">
+                    <button type="submit" class="btn-toggle" th:text="${task.done} ? '✓' : '○'"></button>
+                </form>
+                <span class="task-title" th:text="${task.title}" th:classappend="${task.done} ? 'done'"></span>
+                <form th:action="@{/delete/{id}(id=${task.id})}" method="post">
+                    <button type="submit" class="btn-delete">削除</button>
+                </form>
+            </li>
+        </ul>
 
-    <p th:if="${tasks.isEmpty()}">タスクがありません</p>
+        <p class="empty" th:if="${tasks.isEmpty()}">タスクがありません</p>
+    </div>
 </body>
 </html>

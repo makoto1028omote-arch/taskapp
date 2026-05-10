@@ -1,19 +1,25 @@
 package com.example.taskapp;
 
-public class Task {
-    private static int counter = 1;
+import jakarta.persistence.*;
 
-    private int id;
+@Entity
+public class Task {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String title;
     private boolean done;
 
+    public Task() {}
+
     public Task(String title) {
-        this.id = counter++;
         this.title = title;
         this.done = false;
     }
 
-    public int getId() { return id; }
+    public Long getId() { return id; }
     public String getTitle() { return title; }
     public boolean isDone() { return done; }
     public void setDone(boolean done) { this.done = done; }
